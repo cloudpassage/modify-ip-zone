@@ -1,4 +1,4 @@
-#Modify a Firewall IP Zone
+#modify-ip-zone
 
 Version: *1.0*
 <br />
