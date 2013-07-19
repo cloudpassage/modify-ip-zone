@@ -78,35 +78,6 @@ The zone you create must have between 1 and 375 addresses.
 * Example of loading a public blacklist into an IP zone
         curl -s -o - https://isc.sans.edu/block.txt | sed -e 's/#.*//' | egrep -v '(^$|^Start)' | awk '{print $1 "/" $3}' | ./modify-ip-zone.rb -i aabb3344 -z isc-blocklist --empty --add-stdin
 
-###*Source Code example*
-```Ruby
-optparse = OptionParser.new do |opts|
-  opts.banner = "Add or remove an address from a CloudPassage Halo IP zone. Usage: modify-ip-zone.rb [options]"
-
-  opts.on("-i keyid", "--api_client_id keyid", "API Key ID (can be read only or full access). If no key specified, use first key. If ALL , use all keys.") do |keyid|
-    api_client_ids << keyid unless api_client_ids.include?(keyid)
-  end
-
-  opts.on("-z zone_name", "Name of the zone you wish to modify (surround name by quotes if needed)") do |zone_name|
-    zone_to_modify = zone_name
-  end
-
-  opts.on("-a new_ip", "IP address to add to the list") do |new_addr|
-    add_addresses << new_addr unless add_addresses.include?(new_addr)
-  end
-
-  opts.on("--add-stdin", "read IP addresses to add to the list from stdin") do
-    if stdin_type == "remove"
-      $stderr.puts "Cannot specify both --add-stdin and --remove-stdin, exiting."
-      exit 1
-    end
-    stdin_type = "add"
-  end
-
-  opts.on("-r new_ip", "IP address to remove from the list") do |new_addr|
-    remove_addresses << new_addr unless remove_addresses.include?(new_addr)
-  end
-```
 
 ###*Troubleshooting*
 
