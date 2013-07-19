@@ -15,7 +15,6 @@ You can use this tool with an ip blacklisting or whitelisting tool, or simply to
 
 * modify-ip-zone.rb: The Ruby script file.
 * README.md: This ReadMe file.
-* LICENSE.txt
 
 
 
