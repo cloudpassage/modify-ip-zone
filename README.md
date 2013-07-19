@@ -51,32 +51,49 @@ The zone you create must have between 1 and 375 addresses.
 
 ###*Example Commands*
 * To see the command line help
-        modify-ip-zone.rb -h
+```
+modify-ip-zone.rb -h
+```
 
 * To add an address to a zone:
-        modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh -a 6.7.8.9
-
+```
+modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh -a 6.7.8.9
+```
 
 * To remove an address from a zone:
-        modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh -r 6.7.8.9
+```
+modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh -r 6.7.8.9
+```
 
 * You can add and remove multiple addresses with one invocation:
-        modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh -a 9.8.7.6/28 -a 1.1.2.2/30 -r 3.5.7.9
+```
+modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh -a 9.8.7.6/28 -a 1.1.2.2/30 -r 3.5.7.9
+```
 
 * To ignore the current contents of the zone and start off with an empty list:
-        modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh --empty -a 9.8.7.6/28
+```
+modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh --empty -a 9.8.7.6/28
+```
 
 * To add a list of addresses, one per line, from stdin:
-        echo -e '169.254.0.1\n169.254.1.0/24' | ./modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh --empty --add-stdin
+```
+echo -e '169.254.0.1\n169.254.1.0/24' | ./modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh --empty --add-stdin
+```
 
 * To remove a list of addresses supplied on stdin:
-        echo -e '169.254.0.1' | ./modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh --remove-stdin
+```
+echo -e '169.254.0.1' | ./modify-ip-zone.rb -i aabb3344 -z fail2ban-ssh --remove-stdin
+```
 
 * If your zone has spaces or other characters that might be processed by the shell, surround it with quotes:
-        modify-ip-zone.rb -i aabb3344 -z '|My Very odd zone|!!' -r 6.7.8.9
+```
+modify-ip-zone.rb -i aabb3344 -z '|My Very odd zone|!!' -r 6.7.8.9
+```
 
 * Example of loading a public blacklist into an IP zone
-        curl -s -o - https://isc.sans.edu/block.txt | sed -e 's/#.*//' | egrep -v '(^$|^Start)' | awk '{print $1 "/" $3}' | ./modify-ip-zone.rb -i aabb3344 -z isc-blocklist --empty --add-stdin
+```
+curl -s -o - https://isc.sans.edu/block.txt | sed -e 's/#.*//' | egrep -v '(^$|^Start)' | awk '{print $1 "/" $3}' | ./modify-ip-zone.rb -i aabb3344 -z isc-blocklist --empty --add-stdin
+```
 
 
 ###*Troubleshooting*
