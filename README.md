@@ -131,4 +131,5 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!---
 #CPTAGS:community-unsupported integration automation
+#TBICON:images/ruby_icon.png
 -->
